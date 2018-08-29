@@ -1,4 +1,4 @@
-#flight-shedule
+# flight-shedule
 
 Расписание авиарейсов аэропорта Шереметьево (SVO).
 
