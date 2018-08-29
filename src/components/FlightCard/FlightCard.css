@@ -1,0 +1,43 @@
+.flight-card {
+    display: flex;
+    justify-content: center;
+    min-height: 300px;
+    flex-basis: 150px;
+    outline: 2px solid rgb(255, 190, 106);
+    margin: 2%;
+}
+
+
+.flight-btn button {
+  border-style: none;
+  background: #fff;
+}
+
+
+.flight-btn button:hover {
+  background: #7ad4fd;
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #fff;
+}
+
+
+.flight-btn p {
+  font-size: large;
+}
+
+.flight-icon {
+  max-height: 300px;
+}
+
+
+@media screen and (max-width: 660px) {
+  .flight-card {
+    min-height: 150px;
+  }
+  .flight-icon {
+    max-width: 155px;
+  }
+
+}

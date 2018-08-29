@@ -1,0 +1,18 @@
+.nav-button {
+    padding: 5px;
+}
+.nav-button button{
+    background-color:#61dafb;
+    height: 40px;
+    color: #000;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-style: none; 
+    outline: 1px solid #000;
+}
+
+.nav-button button:hover {
+    background-color: rgb(255, 190, 106);
+    color: #fff;
+    cursor: pointer;
+}

@@ -1,0 +1,24 @@
+.search {
+    padding: 5px;
+  }
+  
+  .search input {
+    border-style: none;
+    outline: 1px solid #000;
+    width: 150px;
+    height: 30px;
+    padding: 5px;
+    letter-spacing: 1px;
+    box-sizing: content-box;
+  }
+  
+  .search button {
+    background-color:#afafaf;
+    height: 40px;
+    color: #000;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-style: none;
+    outline: 1px solid #000;
+  }
+  
