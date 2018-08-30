@@ -8,35 +8,12 @@ export const checkPath = (path) => {
     else if (path === "departure") {
         return departureUrl;
     }
+    else if (path === "delayed") { //incomplete
+        return departureUrl;
+    }
     else {
         console.error('Wrong path');
         return path;
     }
-}
-
-export const fetchFlightsData = (url) => {
-
-    let status = function(response) {
-        if(response.status !== 200) {
-            return Promise.reject(new Error(response.statusText))
-        }
-        console.log('response', response);
-        return Promise.resolve(response);
-    }
-
-    let json = function(response) {
-        return response.json()
-    }
-
-    fetch(url)
-        .then(status)
-        .then(json)
-        .then(function(data) {
-            console.log('data', data);
-            return data;
-        })
-        .catch(function(error) {
-            console.log('error', error);
-        })
 }
 

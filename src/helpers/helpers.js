@@ -8,6 +8,6 @@ export const getDateFormat = (date) => {
 
 export const isFuzzy = (arr) => {
     return arr.filter( (item) => {
-        if(item['is_fuzzy']) return item
+        return item['is_fuzzy']
     })
 }

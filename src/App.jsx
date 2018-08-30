@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import data from './api/arrival.json';
-
 import Main from './containers/Main/Main';
 import FlightsInfo from './containers/FlightsInfo/FlightsInfo';
-import { searchFlight } from './api/index';
 
 class App extends Component {
 

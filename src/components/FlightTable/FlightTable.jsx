@@ -2,9 +2,11 @@ import React from 'react';
 
 import './FlightTable.css';
 
-import { getDateFormat } from '../../helpers/helpers';
+import { getDateFormat, isFuzzy } from '../../helpers/helpers';
 
 const FlightTable = ({ data, direction }) => {
+
+    const resultData = (direction === "delayed") ? isFuzzy(data) : data;
 
     const renderCells = (flight, index) => {
         const time = (direction === "arrival") ? 
@@ -38,7 +40,7 @@ const FlightTable = ({ data, direction }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map( (flight, index) => renderCells(flight, index) )}
+                    {resultData.map( (flight, index) => renderCells(flight, index) )}
                 </tbody>
             </table>
         </div>

@@ -7,9 +7,7 @@ import Header from '../../components/Header/Header';
 import Search from '../../components/Search/Search';
 import Button from '../../components/Button/Button';
 import FlightTable from '../../components/FlightTable/FlightTable';
-import { isFuzzy } from '../../helpers/helpers';
-import arrival from '../../api/arrival.json';
-import departure from '../../api/departure.json';
+import { checkPath } from '../../api/index';
 
 class FlightsInfo extends Component {
     constructor(props) {
@@ -18,23 +16,53 @@ class FlightsInfo extends Component {
         this.state = {
             search: "",
             data: null,
-            direction: ""
+            direction: "",
+            fetching: true
         }
     }
 
-    componentWillMount() {  
+    componentDidMount() {
         const { routeProps } = this.props;
-        let url = routeProps.match.path.slice(1);
-        let flightData = (url === "arrival") ? 
-                            arrival.schedule :
-                        (url === "departure") ? 
-                            departure.schedule :
-                           isFuzzy(departure.schedule) 
-        this.initialData = flightData;
-        this.setState({ 
-            data: this.initialData,
-            direction: url
-        });   
+        let path = routeProps.match.path.slice(1);
+        let newUrl = checkPath(path);
+
+        this.fetchFlightsData(newUrl);
+
+        this.setState({
+            direction: path
+        })
+    }
+
+    fetchFlightsData = (url) => {
+
+        let status = function(response) {
+            if(response.status !== 200) {
+                return Promise.reject(new Error(response.statusText))
+            }
+            return Promise.resolve(response);
+        }
+    
+        let json = function(response) {
+            return response.json()
+        }
+    
+        fetch(url)
+            .then(status)
+            .then(json)
+            .then((data) => {
+                console.log('data', data);
+                let flightData = data.schedule;
+                this.initialData = flightData;
+
+                this.setState({
+                    data: this.initialData,
+                    fetching: false
+                })
+
+            })
+            .catch(function(error) {
+                console.log('error', error);
+            })
     }
 
     updateData = (newData) => {
@@ -46,7 +74,7 @@ class FlightsInfo extends Component {
         const filter = this.initialData.filter( (flight) => {
             return flight.thread.number.toLowerCase().includes(value);
         });
-  
+
         this.updateData({
             search: value,
             data: filter
@@ -55,6 +83,7 @@ class FlightsInfo extends Component {
 
     render() {
         const { title } = this.props;
+        const preload = <p className="preload">ЗАГРУЗКА ДАННЫХ...</p>;
         return(
             <div>
                 <Header title={title} />
@@ -65,11 +94,15 @@ class FlightsInfo extends Component {
                             <Button name="Назад"/>
                         </Link>
                     </div>
-                    <FlightTable 
-                        data={this.state.data} 
-                        direction={this.state.direction} 
-                        update={this.updateData} 
-                    />
+                    {
+                        this.state.fetching ? 
+                        preload :
+                        <FlightTable 
+                            data={this.state.data} 
+                            direction={this.state.direction} 
+                            update={this.updateData} 
+                        />
+                    }
                 </div>
             </div>
         )
