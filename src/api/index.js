@@ -1,6 +1,6 @@
 export const checkPath = (path) => {
-    const arrivalUrl = 'http://www.mocky.io/v2/5b85bbd73000004c2a72943e';
-    const departureUrl = 'http://www.mocky.io/v2/5b85bc65300000ac2972943f';
+    const arrivalUrl = 'https://5b8d97c75722ac0014317443.mockapi.io/api/v1/arrival';
+    const departureUrl = 'https://5b8d97c75722ac0014317443.mockapi.io/api/v1/departure';
 
     if (path === "arrival") {
         return arrivalUrl;

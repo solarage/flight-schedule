@@ -34,8 +34,6 @@ class FlightsInfo extends Component {
     }
 
     fetchFlightsData = (url) => {
-        const infoMessage = 'To test REST API, this app uses the mocky.io service, which only supports HTTP requests. Necessary: Disable protection on this page for Mozilla Firefox (icon in the address bar) / Enable the loading of unsafe scripts for Google Chrome (icon in the address bar). Disable "HTTPS Everywhere" extension, if there is.';
-        console.warn(infoMessage);
 
         let status = function(response) {
             if(response.status !== 200) {
