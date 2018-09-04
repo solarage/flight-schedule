@@ -51,7 +51,7 @@ class FlightsInfo extends Component {
             .then(json)
             .then((data) => {
                 console.log('data', data);
-                let flightData = data.schedule;
+                let flightData = data[0].schedule;
                 this.initialData = flightData;
 
                 this.setState({
